@@ -8,13 +8,5 @@ use App\Models\{Product};
 
 class ProductController extends Controller
 {
-    public function rate(Request $request, Product $product)
-    {
-        $product->rating_sum += $request->rating;
-        $product->rating_count++;
-        $product->save();
-        return response()->json([
-            'message' => "Product #{{$product->id}} Rated Successfully",
-        ]);
-    }
+
 }
