@@ -16,7 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('name');
             $table->decimal('price', 10, 2);
-            $table->decimal('off', 10, 2);
+            $table->decimal('off', 10, 2)->default(0);
             $table->text('about')->nullable();
             $table->boolean('isAvailable')->default(true);
             $table->integer('quantity')->default(1);
