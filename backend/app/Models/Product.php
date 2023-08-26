@@ -13,4 +13,9 @@ class Product extends Model
     {
         return $this->hasMany(ImageLink::class)->pluck('link');
     }
+
+    public function subProducts()
+    {
+        return $this->hasManyThrough(Product::class, OfferProduct::class, 'id', 'id', 'offer_id', 'product_id');
+    }
 }

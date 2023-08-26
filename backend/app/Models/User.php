@@ -49,4 +49,8 @@ class User extends Authenticatable
     public function favorites() {
         return $this->hasManyThrough(Product::class, Favorite::class);
     }
+
+    public function profileImage(){
+        return $this->hasOne(ImageLink::class)->pluck('link');
+    }
 }

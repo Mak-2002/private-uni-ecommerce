@@ -36,7 +36,9 @@ class Handler extends ExceptionHandler
         $file = Str::replace(base_path(), '', $exception->getFile());
         $data = [
             'success' => false,
-            'message' => $exception->getMessage() . " in Line " . $exception->getLine() . ", File: " . $file,
+            'message' => $exception->getMessage(),
+            'line' => $exception->getLine(),
+            'file' => $file,
         ];
 
         if ($exception instanceof ValidationException)
