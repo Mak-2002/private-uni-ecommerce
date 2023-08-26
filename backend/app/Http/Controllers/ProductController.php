@@ -14,7 +14,6 @@ class ProductController extends Controller
         $product->rating_count++;
         $product->save();
         return response()->json([
-            'success' => true,
             'message' => "Product #{{$product->id}} Rated Successfully",
         ]);
     }

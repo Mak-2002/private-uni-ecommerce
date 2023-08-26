@@ -35,7 +35,6 @@ class Handler extends ExceptionHandler
     {
         $file = Str::replace(base_path(), '', $exception->getFile());
         $data = [
-            'success' => false,
             'message' => $exception->getMessage(),
             'line' => $exception->getLine(),
             'file' => $file,
