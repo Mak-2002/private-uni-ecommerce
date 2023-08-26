@@ -46,11 +46,18 @@ class User extends Authenticatable
     /**
      * Returns the favorite products of the user
      */
-    public function favorites() {
+    public function favorites()
+    {
         return $this->hasManyThrough(Product::class, Favorite::class);
     }
 
-    public function profileImage(){
+    public function profileImage()
+    {
         return $this->hasOne(ImageLink::class)->pluck('link');
+    }
+
+    public function cart()
+    {
+        return $this->hasMany(CartItem::class);
     }
 }
