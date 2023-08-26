@@ -13,9 +13,6 @@ class ProductController extends Controller
         $product->rating_sum += $request->rating;
         $product->rating_count++;
         $product->save();
-        return response()->json([
-            'success' => true,
-            'message' => "Product #{{$product->id}} Rated Successfully",
-        ]);
+        return $this->successResponse("Product #{{$product->id}} Rated Successfully");
     }
 }

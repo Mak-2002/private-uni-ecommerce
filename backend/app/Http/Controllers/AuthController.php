@@ -26,10 +26,9 @@ class AuthController extends Controller
         ]);
 
         $this->attemptOrFail($request);
-        return response()->json([
-            'success' => true,
-            'auth_token' => Auth::user()->createToken('auth_token')->plainTextToken,
-        ], 200);
+        return $this->successResponse([
+            'auth_token' => Auth::user()->createToken('auth_token')->plainTextToken
+        ]);
     }
 
     public function register(Request $request)
@@ -48,9 +47,8 @@ class AuthController extends Controller
         ]);
 
         $this->attemptOrFail($request);
-        return response()->json([
-            'success' => true,
-            'auth_token' => Auth::user()->createToken('auth_token')->plainTextToken,
+        return $this->successResponse([
+            'auth_token' => Auth::user()->createToken('auth_token')->plainTextToken
         ], 201);
     }
 
