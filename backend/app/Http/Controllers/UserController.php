@@ -48,23 +48,30 @@ class UserController extends Controller
         );
     }
 
-    public function addToCart(Product $product)
+    public function changeProductQuantityInCart(Request $request, Product $product)
     {
-        $cart_item = Auth::user()->cart()->where('product_id', $product->id);
-        if ($cart_item->exists()) {
-            $cart_item = $cart_item->get();
-            $cart_item->quantity++;
-            $cart_item->save();
-        } else {
-            Auth::user()->cart()->create([
-                'product_id', $product->id
+        $change = $request->input('change', 1);
+        $cartItem = Auth::user()->cart()->where('product_id', $product->id)->first();
+
+        if (!$cartItem) {
+            $cartItem = Auth::user()->cart()->create([
+                'product_id' => $product->id,
+                'quantity' => $change,
             ]);
+            $data['message'] = "Product #{$product->id} Added to Cart";
+        } else {
+            $newQuantity = $cartItem->quantity + $change;
+
+            if ($newQuantity <= 0) {
+                $cartItem->delete();
+                $message = "Product #{$product->id} Removed from Cart";
+            } else {
+                $cartItem->update(['quantity' => $newQuantity]);
+                $data['message'] = "Product #{$product->id} Quantity Modified in Cart";
+                $data['remaining'] = $cartItem->quantity;
+            }
         }
 
-        return response()->json([
-            'message' => "Product #{{$product->id}} Added to Cart"
-        ]);
+        return response()->json($data);
     }
-
-    //TODO: public function removeFromCart
 }
