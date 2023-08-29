@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('offer_products', function (Blueprint $table) {
             $table->id();
-            $table->foreign('offer_id')->constrained('products');
-            $table->foreign('prodcut_id')->constrained('products');
-            $table->unique(['offer_id', 'product_id']);
+            $table->foreignId('offer_id')->constrained('products');
+            $table->foreignId('sub_product_id')->constrained('products');
+            $table->unique(['offer_id', 'sub_product_id']);
             $table->timestamps();
         });
     }

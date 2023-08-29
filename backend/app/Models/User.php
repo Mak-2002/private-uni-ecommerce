@@ -48,7 +48,14 @@ class User extends Authenticatable
      */
     public function favorites()
     {
-        return $this->hasManyThrough(Product::class, Favorite::class);
+        return $this->hasManyThrough(
+            Product::class,
+            Favorite::class,
+            'user_id',
+            'id',
+            'id',
+            'product_id',
+        );
     }
 
     public function profileImage()

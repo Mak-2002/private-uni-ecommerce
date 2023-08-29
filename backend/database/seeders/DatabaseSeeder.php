@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\{Product, Category, User};
+use App\Models\{Product, Category, OfferProduct, User};
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,13 +13,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Users
+        User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => 'password'
-        ]);
-
+        // Categories
         $categories = [
             'homeTools',
             'cleaning',
@@ -44,6 +41,18 @@ class DatabaseSeeder extends Seeder
                 'name' => $category
             ]);
 
-        
+        // Products
+        //? --> Normal Products
+        Product::factory(10)->create();
+
+        //? --> Offers
+        Product::factory(3)->create()->each(function ($product) {
+            $subProducts = Product::inRandomOrder()->whereBetween('id', [1, 10])->take(3)->get();
+            foreach($subProducts as $subProduct)
+                OfferProduct::factory()->create([
+                    'offer_id' => $product->id,
+                    'sub_product_id' => $subProduct->id
+                ]);
+        });
     }
 }

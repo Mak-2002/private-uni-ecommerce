@@ -21,7 +21,8 @@ return new class extends Migration
             $table->integer('quantity')->default(1);
             $table->integer('rating_sum')->default(0);
             $table->integer('rating_count')->default(0);
-            $table->foreign('category', 'category')->references('name')->on('categories');
+            $table->string('category');
+            $table->foreign('category')->references('name')->on('categories');
             $table->timestamps();
         });
     }

@@ -18,10 +18,6 @@ class Product extends Model
         'quantity',
     ];
 
-    public function scopeIsOffer($query)
-    {
-        return $query->whereHas('subProducts');
-    }
 
     public function getRatingAttribute()
     {
@@ -37,8 +33,19 @@ class Product extends Model
         return $this->hasMany(ImageLink::class)->pluck('link');
     }
 
+    public function scopeIsOffer($query)
+    {
+        return $query->has('subProducts');
+    }
     public function subProducts()
     {
-        return $this->hasManyThrough(Product::class, OfferProduct::class, 'id', 'id', 'offer_id', 'product_id');
+        return $this->hasManyThrough(
+            Product::class,
+            OfferProduct::class,
+            'offer_id',
+            'id',
+            'id',
+            'sub_product_id',
+        );
     }
 }

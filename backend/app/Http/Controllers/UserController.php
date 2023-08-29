@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Favorite;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -21,13 +23,17 @@ class UserController extends Controller
     public function addOrRemoveFavorite(Product $product)
     {
         $currentUser = Auth::user();
-        if ($currentUser->favorites()->where('product_id', $product->id)->exists()) {
-            $currentUser->favorites()->detach($product->id);
+        $favoriteObject = Favorite::where('user_id', $currentUser->id)->andWhere('product_id', $product->id)->first();
+        if ($favoriteObject) {
+            $favoriteObject->delete();
             return response()->json([
                 'message' => "Product #{{$product->id}} Removed from Favorites"
             ]);
         } else {
-            $currentUser->favorites()->attach($product->id);
+            Favorite::create([
+                'user_id' => $currentUser->id,
+                'product_id' => $product->id,
+            ]);
             return response()->json([
                 'message' => "Product #{{$product->id}} Added to Favorites"
             ]);
