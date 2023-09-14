@@ -11,25 +11,20 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // User
-Route::prefix('/user')->name('user.')->group(
-    function () {
-        Route::middleware('auth:sanctum')->group(function () {
-            Route::get('/', function (Request $request) {
-                return $request->user();
-            })->name('user');
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    })->name('user'); //TODO
 
-            //* Product Related
-            // Rating
-            Route::post('rateproduct', [UserController::class, 'rateProduct'])->name('rateProduct');
+    //* Product Related
+    // Rating
+    Route::post('/user/rateproduct', [UserController::class, 'rateProduct'])->name('rateProduct');
 
-            // Favorites
-            Route::get('/favorites', [UserController::class, 'getFavorites'])->name('favorites.get');
-            Route::post('/favorites/toggle', [UserController::class, 'toggleFavorite'])->name('favorites.toggle');
+    // Favorites
+    Route::get('/user/favorites', [UserController::class, 'getFavorites'])->name('favorites.get');
+    Route::post('/user/favorites/toggle', [UserController::class, 'toggleFavorite'])->name('favorites.toggle');
 
-            //Cart
-            Route::get('/cart', [UserController::class, 'getCart'])->name('cart.get');
-            Route::post('/cart/modify', [UserController::class, 'changeProductQuantityInCart'])->name('cart.modify');
-
-        });
-    }
-);
+    //Cart
+    Route::get('/user/cart', [UserController::class, 'getCart'])->name('cart.get');
+    Route::post('/user/cart/modify', [UserController::class, 'changeProductQuantityInCart'])->name('cart.modify');
+});
