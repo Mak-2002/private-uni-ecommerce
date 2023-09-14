@@ -10,8 +10,9 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function rate(Request $request, Product $product)
+    public function rateProduct(Request $request)
     {
+        $product = Product::findOrFail($request->product_id);
         $product->rating_sum += $request->rating;
         $product->rating_count++;
         $product->save();
@@ -20,10 +21,11 @@ class UserController extends Controller
         ]);
     }
 
-    public function addOrRemoveFavorite(Product $product)
+    public function toggleFavorite(Request $request)
     {
+        $product = Product::findOrFail($request->product_id);
         $currentUser = Auth::user();
-        $favoriteObject = Favorite::where('user_id', $currentUser->id)->andWhere('product_id', $product->id)->first();
+        $favoriteObject = Favorite::where('user_id', $currentUser->id)->where('product_id', $product->id)->first();
         if ($favoriteObject) {
             $favoriteObject->delete();
             return response()->json([
@@ -40,7 +42,7 @@ class UserController extends Controller
         }
     }
 
-    public function getFavoriteProducts(Request $request)
+    public function getFavorites(Request $request)
     {
         return response()->json(
             Auth::user()->favorites
@@ -54,8 +56,9 @@ class UserController extends Controller
         );
     }
 
-    public function changeProductQuantityInCart(Request $request, Product $product)
+    public function changeProductQuantityInCart(Request $request)
     {
+        $product = Product::findOrFail($request->product_id);
         $change = $request->input('change', 1);
         $cartItem = Auth::user()->cart()->where('product_id', $product->id)->first();
 

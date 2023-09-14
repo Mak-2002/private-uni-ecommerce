@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +15,7 @@ class AuthController extends Controller
     {
         if (!Auth::attempt($request->only('email', 'password')))
             throw ValidationException::withMessages([
-                'email' => ['The provided credentials are incorrect.'],
+                'email' => ['البريد الإلكتروني أو كلمة المرور غير صحيحة'],
             ]);
     }
 
@@ -34,14 +35,14 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            //? DEBUG:commented 'name' => 'required|string|max:255|/^[a-zA-Z]+(?:\s[a-zA-Z]+){0,2}$/',
+            //? DEBUG:commented 'name' => 'required|string|max:255|regex:/^[\p{L}\s\'-]+$/u',
             'name' => 'required|string|max:255', //? DEBUG:wrote
             'email' => 'required|string|email|unique:users|max:255',
             'password' => 'required|min:8|max:255|confirmed'
         ]);
 
         User::create([
-            'name' => $request->name,
+            'name' => $request->name, 
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
@@ -54,6 +55,11 @@ class AuthController extends Controller
 
     public function logout()
     {
-        Auth::logout();
+        // Revoke the user's token abilities
+        Auth::user()->tokens()->delete();
+
+        return response()->json([
+            'message' => 'تم تسجيل الخروج بنجاح'
+        ]);
     }
 }
