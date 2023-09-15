@@ -41,7 +41,7 @@ class Product extends Model
 
     public function getPriceAttribute()
     {
-        return $this->attributes['price'] . ' ل.س';
+        return 'ل.س ' . $this->attributes['price'];
     }
 
     public function getImageLinksAttribute()
