@@ -188,11 +188,12 @@ class ProductsTableSeeder extends Seeder
         //? --> Offers
         Product::factory(3)->create()->each(function ($product) {
             $subProducts = Product::inRandomOrder()->whereBetween('id', [1, 10])->take(3)->get();
-            foreach ($subProducts as $subProduct)
-                OfferProduct::factory()->create([
+            foreach ($subProducts as $subProduct) {
+                OfferProduct::create([
                     'offer_id' => $product->id,
-                    'sub_product_id' => $subProduct->id
+                    'sub_product_id' => $subProduct->id,
                 ]);
+            }
         });
     }
 }

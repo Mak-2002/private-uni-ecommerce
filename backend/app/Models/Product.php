@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use ReturnTypeWillChange;
+use Symfony\Component\Routing\Loader\ProtectedPhpFileLoader;
 
 class Product extends Model
 {
@@ -18,6 +20,34 @@ class Product extends Model
         'quantity',
     ];
 
+    protected $appends = [
+        'rating',
+        'price',
+        'image_links',
+    ];
+
+    protected $hidden = [
+        'rating_count',
+        'rating_sum',
+        'created_at',
+        'updated_at',
+        'images',
+        'pivot',
+    ];
+
+    protected $with = [
+        'subProducts',
+    ];
+
+    public function getPriceAttribute()
+    {
+        return $this->attributes['price'] . ' SYP';
+    }
+
+    public function getImageLinksAttribute()
+    {
+        return $this->images->pluck('link');
+    }
 
     public function getRatingAttribute()
     {
@@ -28,24 +58,36 @@ class Product extends Model
         );
     }
 
+    public function scopeAvailable($query)
+    {
+        return $query->where('isAvailable', 1);
+    }
+
+    public function scopeFilter($query, $filters)
+    {
+        $query->when($filters['category'] ?? false, function ($query, $category) {
+            $query->where('category', $category);
+        });
+        return $query;
+    }
+
     public function images()
     {
-        return $this->hasMany(ImageLink::class)->pluck('link');
+        return $this->hasMany(ImageLink::class);
     }
 
     public function scopeIsOffer($query)
     {
         return $query->has('subProducts');
     }
+
+    public function offers()
+    {
+        return $this->belongsToMany(Product::class, 'offer_products', 'sub_product_id', 'offer_id');
+    }
+
     public function subProducts()
     {
-        return $this->hasManyThrough(
-            Product::class,
-            OfferProduct::class,
-            'offer_id',
-            'id',
-            'id',
-            'sub_product_id',
-        );
+        return $this->belongsToMany(Product::class, 'offer_products', 'offer_id', 'sub_product_id');
     }
 }

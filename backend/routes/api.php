@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,4 +27,10 @@ Route::middleware('auth:sanctum')->group(function () {
     //Cart
     Route::get('/user/cart', [UserController::class, 'getCart'])->name('cart.get');
     Route::post('/user/cart/modify', [UserController::class, 'changeProductQuantityInCart'])->name('cart.modify');
+});
+
+// Product
+Route::middleware('auth:sanctum')->group(function() {
+    Route::get('/products', [ProductController::class, 'getProducts']); //? DEBUG : should be resource
+
 });

@@ -23,6 +23,8 @@ return new class extends Migration
             $table->integer('rating_count')->default(0);
             $table->string('category');
             $table->foreign('category')->references('name')->on('categories');
+            $table->unsignedBigInteger('parent_product_id')->nullable();
+            $table->foreign('parent_product_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
         });
     }
