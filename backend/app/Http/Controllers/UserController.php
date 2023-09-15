@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    public function getUser(Request $request)
+    {
+        return $request->user();
+    }
+
     public function rateProduct(Request $request)
     {
         $product = Product::findOrFail($request->product_id);
