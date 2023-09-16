@@ -35,9 +35,9 @@ class Product extends Model
         'pivot',
     ];
 
-    protected $with = [
-        'subProducts',
-    ];
+    // protected $with = [
+    //     'subProducts',
+    // ];
 
     public function getPriceAttribute()
     {
@@ -76,18 +76,18 @@ class Product extends Model
         return $this->hasMany(ImageLink::class);
     }
 
-    public function scopeIsOffer($query)
-    {
-        return $query->has('subProducts');
-    }
+    // public function scopeIsOffer($query)
+    // {
+    //     return $query->has('subProducts');
+    // }
 
-    public function offers()
-    {
-        return $this->belongsToMany(Product::class, 'offer_products', 'sub_product_id', 'offer_id');
-    }
+    // public function offers()
+    // {
+    //     return $this->belongsToMany(Product::class, 'offer_products', 'sub_product_id', 'offer_id');
+    // }
 
-    public function subProducts()
-    {
-        return $this->belongsToMany(Product::class, 'offer_products', 'offer_id', 'sub_product_id');
-    }
+    // public function subProducts()
+    // {
+    //     return $this->belongsToMany(Product::class, 'offer_products', 'offer_id', 'sub_product_id');
+    // }
 }
