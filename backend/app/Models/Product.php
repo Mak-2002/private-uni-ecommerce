@@ -22,7 +22,6 @@ class Product extends Model
 
     protected $appends = [
         'rating',
-        'price',
         'image_links',
     ];
 
@@ -38,11 +37,6 @@ class Product extends Model
     // protected $with = [
     //     'subProducts',
     // ];
-
-    public function getPriceAttribute()
-    {
-        return 'ل.س ' . $this->attributes['price'];
-    }
 
     public function getImageLinksAttribute()
     {
@@ -75,7 +69,7 @@ class Product extends Model
     {
         return $this->hasMany(ImageLink::class);
     }
-
+    //
     // public function scopeIsOffer($query)
     // {
     //     return $query->has('subProducts');
