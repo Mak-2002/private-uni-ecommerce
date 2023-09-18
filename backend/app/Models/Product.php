@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use ReturnTypeWillChange;
 use Symfony\Component\Routing\Loader\ProtectedPhpFileLoader;
 
@@ -23,6 +24,7 @@ class Product extends Model
     protected $appends = [
         'rating',
         'image_links',
+        'isFavorite',
     ];
 
     protected $hidden = [
@@ -41,6 +43,11 @@ class Product extends Model
     public function getImageLinksAttribute()
     {
         return $this->images->pluck('link');
+    }
+
+    public function getIsFavoriteAttribute()
+    {
+        return Favorite::where('user_id', Auth::user()->id)->where('product_id', $this->id)->exists();
     }
 
     public function getRatingAttribute()
