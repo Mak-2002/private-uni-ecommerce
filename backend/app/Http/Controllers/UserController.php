@@ -62,9 +62,11 @@ class UserController extends Controller
         $cart = Auth::user()->cart;
         foreach ($cart as $cartItem) {
             $cartItem->price = $cartItem->product->price * $cartItem->quantity;
-            if (!is_null($cartItem->off))
+            if (isset($cartItem->product->off)) {
                 $cartItem->off = $cartItem->product->off * $cartItem->quantity;
-            $totalPrice += $cartItem->off;
+                $totalPrice += $cartItem->off;
+            } else
+                $totalPrice += $cartItem->price;
         }
 
         return response()->json([
