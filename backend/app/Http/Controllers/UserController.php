@@ -64,7 +64,7 @@ class UserController extends Controller
             $cartItem->price = $cartItem->product->price * $cartItem->quantity;
             if (!is_null($cartItem->off))
                 $cartItem->off = $cartItem->product->off * $cartItem->quantity;
-            $totalPrice += $cartItem->price - $cartItem->off;
+            $totalPrice += $cartItem->off;
         }
 
         return response()->json([
