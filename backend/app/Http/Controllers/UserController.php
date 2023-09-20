@@ -7,6 +7,8 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Auth;
+use Nette\Utils\Floats;
+use PhpParser\Node\Expr\Cast\Double;
 
 class UserController extends Controller
 {
@@ -56,9 +58,19 @@ class UserController extends Controller
 
     public function getCart()
     {
-        return response()->json(
-            Auth::user()->cart
-        );
+        $totalPrice = 0;
+        $cart = Auth::user()->cart;
+        foreach ($cart as $cartItem) {
+            $cartItem->price = $cartItem->product->price * $cartItem->quantity;
+            if (!is_null($cartItem->off))
+                $cartItem->off = $cartItem->product->off * $cartItem->quantity;
+            $totalPrice += $cartItem->price - $cartItem->off;
+        }
+
+        return response()->json([
+            'total_price' =>  number_format($totalPrice, 2),
+            'items' => $cart,
+        ]);
     }
 
     public function changeProductQuantityInCart(Request $request)
