@@ -68,17 +68,21 @@ class UserController extends Controller
         $cartItem = Auth::user()->cart()->where('product_id', $product->id)->first();
 
         if (!$cartItem) {
-            $cartItem = Auth::user()->cart()->create([
-                'product_id' => $product->id,
-                'quantity' => $change,
-            ]);
-            $data['message'] = "Product #{$product->id} Added to Cart";
+            if ($change <= 0)
+                $data['message'] = "Product #{$product->id} is not in Cart";
+            else {
+                $cartItem = Auth::user()->cart()->create([
+                    'product_id' => $product->id,
+                    'quantity' => $change,
+                ]);
+                $data['message'] = "Product #{$product->id} Added to Cart";
+            }
         } else {
             $newQuantity = $cartItem->quantity + $change;
 
             if ($newQuantity <= 0) {
                 $cartItem->delete();
-                $message = "Product #{$product->id} Removed from Cart";
+                $data['message'] = "Product #{$product->id} Removed from Cart";
             } else {
                 $cartItem->update(['quantity' => $newQuantity]);
                 $data['message'] = "Product #{$product->id} Quantity Modified in Cart";
