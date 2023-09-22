@@ -23,6 +23,7 @@ class Product extends Model
         'rating',
         'image_links',
         'isFavorite',
+        'isAvailable'
     ];
 
     protected $hidden = [
@@ -49,6 +50,11 @@ class Product extends Model
         return Favorite::where('user_id', Auth::user()->id)->where('product_id', $this->id)->exists();
     }
 
+
+    public function getIsAvailableAttribute()
+    {
+        return $this->quantity != 0;
+    }
     public function getRatingAttribute()
     {
         if ($this->rating_count == 0) return null; // Could also be set to 0

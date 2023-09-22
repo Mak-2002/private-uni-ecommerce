@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PurchaseRequest;
 use App\Models\CartItem;
 use App\Models\Favorite;
 use App\Models\Product;
@@ -14,8 +15,11 @@ use PHPUnit\Framework\MockObject\Stub\ReturnReference;
 
 class UserController extends Controller
 {
-    public function buy(Request $request)
+    public function buy(PurchaseRequest $request)
     {
+        $currentUser = Auth::user();
+        $currentUser->cart()->delete();
+        //TODO: continue purchase process
     }
 
     public function getUser(Request $request)

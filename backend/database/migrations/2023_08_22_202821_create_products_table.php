@@ -17,7 +17,6 @@ return new class extends Migration
             $table->decimal('price', 10, 2);
             $table->decimal('off', 10, 2)->nullable();
             $table->text('about')->nullable();
-            $table->boolean('isAvailable')->default(true);
             $table->integer('quantity')->default(1);
             $table->integer('rating_sum')->default(0);
             $table->integer('rating_count')->default(0);
