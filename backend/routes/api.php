@@ -24,9 +24,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user/favorites', [UserController::class, 'getFavorites'])->name('favorites.get');
     Route::post('/user/favorites/toggle', [UserController::class, 'toggleFavorite'])->name('favorites.toggle');
 
-    //Cart
+    // Cart
     Route::get('/user/cart', [UserController::class, 'getCart'])->name('cart.get');
     Route::post('/user/cart/modify', [UserController::class, 'changeProductQuantityInCart'])->name('cart.modify');
+
+    // Purchase
+    Route::post('/buy', [UserController::class, 'buy'])->name('buy');
 });
 
 // Product
@@ -34,3 +37,5 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::get('/products', [ProductController::class, 'getProducts']); //? DEBUG : should be resource
 
 });
+
+// Route::post( '/buy', [ SalesController::class, 'buyProduct' ] )

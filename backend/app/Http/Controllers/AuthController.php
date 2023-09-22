@@ -11,7 +11,7 @@ use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
-    protected function attemptOrFail(Request $request)
+    protected function attemptLoginOrFail(Request $request)
     {
         if (!Auth::attempt($request->only('email', 'password')))
             throw ValidationException::withMessages([
@@ -26,7 +26,7 @@ class AuthController extends Controller
             'password' => 'required|min:8|max:255',
         ]);
 
-        $this->attemptOrFail($request);
+        $this->attemptLoginOrFail($request);
         return response()->json([
             'auth_token' => Auth::user()->createToken('auth_token')->plainTextToken,
         ]);
@@ -42,14 +42,14 @@ class AuthController extends Controller
         ]);
 
         User::create([
-            'name' => $request->name, 
+            'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
-        $this->attemptOrFail($request);
+        $this->attemptLoginOrFail($request);
         return response()->json([
-            'auth_token' => Auth::user()->createToken('auth_token')->plainTextToken,
+            'auth_token' => Auth::user()->createToken('auth_token')->plainTextToken ,
         ], 201);
     }
 

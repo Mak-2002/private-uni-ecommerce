@@ -11,7 +11,8 @@ class ProductController extends Controller
     public function getProducts(Request $request)
     {
         $filters = $request->all();
-        $products = Product::available()->filter($filters)->get();
+        // $products = Product::available()->filter($filters)->get();
+        $products = Product::filter($filters)->get();
         return response()->json($products);
     }
 }

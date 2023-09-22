@@ -40,6 +40,7 @@ class Product extends Model
 
     public function getImageLinksAttribute()
     {
+        // Get only the link from the ImageLink model
         return $this->images->pluck('link');
     }
 
