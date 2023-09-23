@@ -15,6 +15,9 @@ class UserController extends Controller
         $currentUser = Auth::user();
         //TODO: continue purchase process
         $currentUser->cart()->delete();
+        return response()->json([
+            'message' => 'تم شراء المنتجات بنجاح, بانتظار التوصيل',
+        ]);
     }
 
     public function getUser(Request $request)
