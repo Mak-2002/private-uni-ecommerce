@@ -33,9 +33,7 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 // Product
-Route::middleware('auth:sanctum')->group(function() {
-    Route::get('/products', [ProductController::class, 'getProducts']); //? DEBUG : should be resource
-
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/products', [ProductController::class, 'index']);
+    Route::get('/products/{product}', [ProductController::class, 'show']);
 });
-
-// Route::post( '/buy', [ SalesController::class, 'buyProduct' ] )

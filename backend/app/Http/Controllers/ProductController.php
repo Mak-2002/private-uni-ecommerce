@@ -8,11 +8,16 @@ use App\Models\{Product};
 
 class ProductController extends Controller
 {
-    public function getProducts(Request $request)
+    public function index(Request $request)
     {
         $filters = $request->all();
         // $products = Product::available()->filter($filters)->get();
         $products = Product::filter($filters)->get();
         return response()->json($products);
+    }
+
+    public function show(Request $request, Product $product)
+    {
+        return response()->json($product);
     }
 }

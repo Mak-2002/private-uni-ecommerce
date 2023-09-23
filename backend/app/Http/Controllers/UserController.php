@@ -2,24 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PurchaseRequest;
 use App\Models\CartItem;
 use App\Models\Favorite;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Auth;
-use Nette\Utils\Floats;
-use PhpParser\Node\Expr\Cast\Double;
-use PHPUnit\Framework\MockObject\Stub\ReturnReference;
 
 class UserController extends Controller
 {
-    public function buy(PurchaseRequest $request)
+    public function buy(Request $request)
     {
         $currentUser = Auth::user();
-        $currentUser->cart()->delete();
         //TODO: continue purchase process
+        $currentUser->cart()->delete();
     }
 
     public function getUser(Request $request)
