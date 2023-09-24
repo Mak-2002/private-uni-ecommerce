@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
@@ -9,6 +11,22 @@ use Illuminate\Support\Facades\Auth;
 class Product extends Model
 {
     use HasFactory;
+
+    // FIXME
+    protected static function boot()
+    {
+        parent::boot();
+
+        $monthDay = Carbon::now()->format('m-d');
+        static::addGlobalScope('WithSeasonalOffers', function (Builder $builder) use ($monthDay) {
+            $builder->whereNull('availability_start_date')->orWhere(
+                function ($builder) use ($monthDay) {
+                    $builder->whereRaw("DATE_FORMAT(availability_start_date, '%m-%d') <= ?", [$monthDay])
+                        ->whereRaw("DATE_FORMAT(availability_end_date, '%m-%d') >= ?", [$monthDay]);
+                }
+            );
+        });
+    }
 
     protected $fillable = [
         'name',
@@ -81,7 +99,8 @@ class Product extends Model
     {
         return $this->hasMany(ImageLink::class);
     }
-    //
+
+    // FIXME
     // public function scopeIsOffer($query)
     // {
     //     return $query->has('subProducts');
