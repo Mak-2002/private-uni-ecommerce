@@ -12,7 +12,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    // FIXME
+    // TODO: Test seasonal offers
     protected static function boot()
     {
         parent::boot();
@@ -41,7 +41,8 @@ class Product extends Model
         'rating',
         'image_links',
         'isFavorite',
-        'isAvailable'
+        'isAvailable',
+        'current_users_rating',
     ];
 
     protected $hidden = [
@@ -50,12 +51,11 @@ class Product extends Model
         'created_at',
         'updated_at',
         'images',
-        'pivot',
     ];
 
-    // protected $with = [
-    //     'subProducts',
-    // ];
+    protected $with = [
+        'subProducts',
+    ];
 
     public function getImageLinksAttribute()
     {
@@ -67,7 +67,6 @@ class Product extends Model
     {
         return Favorite::where('user_id', Auth::user()->id)->where('product_id', $this->id)->exists();
     }
-
 
     public function getIsAvailableAttribute()
     {
@@ -82,9 +81,20 @@ class Product extends Model
         );
     }
 
+    public function getCurrentUsersRatingAttribute()
+    {
+        $ratingRecord = RatingRecord::where('user_id', Auth::user()->id)->where('product_id', $this->id)->first();
+        return is_null($ratingRecord) ? null : number_format($ratingRecord->star_count, 1);
+    }
+
     public function scopeAvailable($query)
     {
         return $query->where('isAvailable', 1);
+    }
+
+    public function scopeOffers($query)
+    {
+        return $query->whereHas('subProducts');
     }
 
     public function scopeFilter($query, $filters)
@@ -100,19 +110,22 @@ class Product extends Model
         return $this->hasMany(ImageLink::class);
     }
 
+    public function subProducts()
+    {
+        return $this->hasManyThrough(
+            Product::class,
+            OfferProduct::class,
+            'offer_id',
+            'id',
+            'id',
+            'sub_product_id',
+        );
+    }
+
     // FIXME
     // public function scopeIsOffer($query)
     // {
     //     return $query->has('subProducts');
     // }
 
-    // public function offers()
-    // {
-    //     return $this->belongsToMany(Product::class, 'offer_products', 'sub_product_id', 'offer_id');
-    // }
-
-    // public function subProducts()
-    // {
-    //     return $this->belongsToMany(Product::class, 'offer_products', 'offer_id', 'sub_product_id');
-    // }
 }
