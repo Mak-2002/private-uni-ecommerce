@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CartItem;
 use App\Models\Favorite;
 use App\Models\Product;
+use App\Models\RatingRecord;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,9 +28,22 @@ class UserController extends Controller
 
     public function rateProduct(Request $request)
     {
+        $currentUser = Auth::user();
         $product = Product::findOrFail($request->product_id);
-        $product->rating_sum += $request->rating;
-        $product->rating_count++;
+        $ratingRecord = RatingRecord::where('user_id', $currentUser->id)
+            ->where('product_id', $product->id)->first();
+        if (is_null($ratingRecord)) {
+            RatingRecord::create([
+                'user_id' => $currentUser->id,
+                'product_id' => $product->id,
+                'star_count' => $request->rating,
+            ]);
+            $product->rating_sum += $request->rating;
+            $product->rating_count++;
+        } else {
+            $product->rating_sum += $request->rating - $ratingRecord->star_count;
+            $ratingRecord->update(['star_count' => $request->rating]);
+        }
         $product->save();
         return response()->json([
             'message' => "Product #{$product->id} Rated Successfully",
@@ -109,7 +123,7 @@ class UserController extends Controller
             $cartItem->update(['quantity' => $cartItem->quantity + $change]);
             $responseContent['message'] = 'تم تعديل كمية المنتج في السلة';
             $responseContent['quantity_in_cart'] = $cartItem->quantity;
-            if($cartItem->quantity == 0) {
+            if ($cartItem->quantity == 0) {
                 $cartItem->delete();
                 $responseContent['message'] = 'تمت إزالة المنتج من السلة';
                 unset($responseContent['quantity_in_cart']);
