@@ -21,7 +21,7 @@ class ProductFactory extends Factory
             'name' => fake()->word(),
             'price' => fake()->randomFloat(null, 1, 100),
             'about' => fake()->text(),
-            'quantity' => fake()->numberBetween(1, 10),
+            'quantity' => fake()->numberBetween(20, 60),
             'category' => Category::inRandomOrder()->first()->name,
         ];
     }
