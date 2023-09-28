@@ -121,11 +121,4 @@ class Product extends Model
             'sub_product_id',
         );
     }
-
-    // FIXME
-    // public function scopeIsOffer($query)
-    // {
-    //     return $query->has('subProducts');
-    // }
-
 }
