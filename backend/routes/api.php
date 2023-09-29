@@ -36,4 +36,5 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/products', [ProductController::class, 'index']);
     Route::get('/products/{product}', [ProductController::class, 'show']);
+    Route::get('/suggestonoccasion' , [ProductController::class, 'suggestBasedOnOccasion']);
 });

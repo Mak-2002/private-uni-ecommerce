@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{Product};
+use App\Models\{Occasion, Product};
 
 
 class ProductController extends Controller
@@ -21,8 +21,14 @@ class ProductController extends Controller
         return response()->json($product);
     }
 
-    //TODO: Offers based on number of guests attending the occasion
-    
+    public function suggestBasedOnOccasion(Request $request)
+    {
+        //TODO: Continue product suggestion based on occasion
+        $occasion = Occasion::findOrFail($request->occasion_id);
+        $people_attending = $request->people_attending;
+        return response()->json([]);
+    }
+
 
     //TODO: System Analysis and Report
 }
