@@ -20,4 +20,9 @@ class ProductController extends Controller
     {
         return response()->json($product);
     }
+
+    //TODO: Offers based on number of guests attending the occasion
+    
+
+    //TODO: System Analysis and Report
 }

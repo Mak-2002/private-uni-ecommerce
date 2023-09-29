@@ -35,8 +35,8 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            //? DEBUG:commented 'name' => 'required|string|max:255|regex:/^[\p{L}\s\'-]+$/u',
-            'name' => 'required|string|max:255', //? DEBUG:wrote
+            // DEBUG:commented 'name' => 'required|string|max:255|regex:/^[\p{L}\s\'-]+$/u',
+            'name' => 'required|string|max:255', // DEBUG: wrote
             'email' => 'required|string|email|unique:users|max:255',
             'password' => 'required|min:8|max:255|confirmed'
         ]);

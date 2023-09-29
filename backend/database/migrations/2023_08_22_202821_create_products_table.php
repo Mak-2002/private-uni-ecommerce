@@ -19,6 +19,7 @@ return new class extends Migration
             $table->decimal('price', 10, 2);
             $table->decimal('off', 10, 2)->nullable();
             $table->integer('quantity')->default(1);
+            $table->integer('served_people')->nullable();
 
             $table->integer('rating_sum')->default(0);
             $table->integer('rating_count')->default(0);
