@@ -9,10 +9,19 @@ class Occasion extends Model
 {
     use HasFactory;
 
-    public function SuggestedProducts()
+    protected $fillable = [
+        'name'
+    ];
+    
+    public function suggestedProducts()
     {
         return $this->hasManyThrough(
-            
-        )
+            Occasion::class,
+            OccasionProduct::class,
+            'occasion_id',
+            'id',
+            'id',
+            'product_id',
+        );
     }
 }

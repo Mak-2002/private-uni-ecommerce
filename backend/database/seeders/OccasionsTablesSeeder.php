@@ -2,7 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Occasion;
+use App\Models\OccasionProduct;
 use Illuminate\Database\Seeder;
 
 class OccasionsTablesSeeder extends Seeder
@@ -12,10 +13,26 @@ class OccasionsTablesSeeder extends Seeder
      */
     public function run(): void
     {
+        // Create Occasions
         $occasions = [
             'حفل تخرج',
             'حفلة عيد ميلاد',
-
         ];
+        foreach ($occasions as $occasionName)
+            Occasion::create([
+                'name' => $occasionName,
+            ]);
+
+        // Add product suggestions to the occasions
+        for ($i = 1; $i < 4; $i++) {
+            OccasionProduct::create([
+                'occasion_id' => 1,
+                'product_id' => $i,
+            ]);
+            OccasionProduct::create([
+                'occasion_id' => 2,
+                'product_id' => $i + 3,
+            ]);
+        }
     }
 }
