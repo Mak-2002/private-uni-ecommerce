@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->text('about')->nullable();
 
-            $table->decimal('price', 10, 2);
-            $table->decimal('off', 10, 2)->nullable();
+            $table->unsignedInteger('price');
+            $table->unsignedInteger('off')->nullable();
             $table->integer('quantity')->default(1);
             $table->integer('served_people')->nullable();
 

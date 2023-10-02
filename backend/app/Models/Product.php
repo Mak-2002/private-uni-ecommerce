@@ -54,7 +54,8 @@ class Product extends Model
     ];
 
     protected $with = [
-        'subProducts',
+        // 'subProducts',
+        //FIXME: add subProducts relation without causing an infinite loop
     ];
 
     public function getImageLinksAttribute()

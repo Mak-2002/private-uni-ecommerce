@@ -94,7 +94,9 @@ class UserController extends Controller
         }
 
         return response()->json([
-            'total_price' =>  number_format($totalPrice, 2),
+            'total_price_of_items' =>  $totalPrice,
+            'delivery_cost' => config('variables.delivery_cost'),
+            'total' => $totalPrice + config('variables.delivery_cost'),
             'items' => $cart,
         ]);
     }

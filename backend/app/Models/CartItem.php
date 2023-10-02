@@ -12,8 +12,8 @@ class CartItem extends Model
         $product = $this->product;
         $data = $product->toArray();
         $data['quantity'] = $this->attributes['quantity'];
-        $data['price'] = number_format($this->attributes['price'], 2);
-        if (!is_null($data['off'])) $data['off'] = number_format($this->attributes['off'], 2);
+        $data['price'] = $this->attributes['price'];
+        if (!is_null($data['off'])) $data['off'] = $this->attributes['off'];
         return $data;
     }
 

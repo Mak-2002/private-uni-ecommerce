@@ -23,7 +23,8 @@ class DeliveryUser extends Model
         'remember_token',
     ];
 
-    protected = [
-    ]
+    protected $casts = [
+        'password' => 'hashed',
+    ];
 
 }
