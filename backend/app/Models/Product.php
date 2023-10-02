@@ -28,6 +28,21 @@ class Product extends Model
         });
     }
 
+    public function toArray()
+    {
+        $this->loadMissing('subProducts');
+        $data = parent::toArray();
+
+        if ($this->subProducts->count() > 0)
+            $data['sub_products'] = $this->subProducts->toArray();
+
+        else {
+            unset($data['sub_products']);
+            $this->unsetRelation('subProducts');
+        }
+        return $data;
+    }
+
     protected $fillable = [
         'name',
         'price',

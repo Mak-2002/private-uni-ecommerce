@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Models\Product;
@@ -36,5 +37,22 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/products', [ProductController::class, 'index']);
     Route::get('/products/{product}', [ProductController::class, 'show']);
-    Route::get('/suggestonoccasion' , [ProductController::class, 'suggestBasedOnOccasion']);
+    Route::get('/suggestonoccasion', [ProductController::class, 'suggestBasedOnOccasion']);
+});
+
+
+//?---------------------------------------------------------------------------------------------------------------------------------------
+
+// Delivery
+
+//Auth
+Route::post('/delivery/Register', [AuthController::class, 'deliveryRegister']);
+Route::post('/delivery/login', [AuthController::class, 'deliveryLogin']);
+Route::middleware('auth:sanctum')->post('/delivery/logout',  [AuthController::class, 'logout']);
+
+// Delivery
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/delivery/pickup', [DeliveryController::class, 'pickUpOrder']);
+    Route::post('/delivery/deliver', [DeliveryController::class, 'deliverOrder']);
+    Route::post('/delivery/cancel', [DeliveryController::class, 'cancelPickUp']);
 });

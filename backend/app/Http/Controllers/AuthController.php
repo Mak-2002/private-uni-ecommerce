@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use Ramsey\Uuid\Type\Integer;
 
 class AuthController extends Controller
 {
@@ -19,7 +20,7 @@ class AuthController extends Controller
             ]);
     }
 
-    public function login(Request $request)
+    public function login(Request $request, $role)
     {
         $request->validate([
             'email' => 'required|string|email|max:255',
@@ -32,7 +33,7 @@ class AuthController extends Controller
         ]);
     }
 
-    public function register(Request $request)
+    public function register(Request $request, $role = User::ROLE_CUSTOMER)
     {
         $request->validate([
             // DEBUG:commented 'name' => 'required|string|max:255|regex:/^[\p{L}\s\'-]+$/u',
@@ -45,11 +46,12 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => $role,
         ]);
 
         $this->attemptLoginOrFail($request);
         return response()->json([
-            'auth_token' => Auth::user()->createToken('auth_token')->plainTextToken ,
+            'auth_token' => Auth::user()->createToken('auth_token')->plainTextToken,
         ], 201);
     }
 
@@ -61,5 +63,18 @@ class AuthController extends Controller
         return response()->json([
             'message' => 'تم تسجيل الخروج بنجاح'
         ]);
+    }
+
+    //-------------------------------------------------------------------------------------------------------------------------
+    // Delivery User's Methods
+
+    public function deliveryRegister(Request $request)
+    {
+        $this->register($request, User::ROLE_DELIVERY_PERSON);
+    }
+
+    public function deliveryLogin(Request $request)
+    {
+        $this->login($request, User::ROLE_DELIVERY_PERSON);
     }
 }

@@ -14,9 +14,20 @@ return new class extends Migration
         Schema::create('delivery_orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('delivery_user_id')->constrained()->nullable()->cascadeOnDelete();
-            $table->string('state')->default('still_dont_funcken_know'); //FIXME
+            $table->string('user_name');
+            $table->string('phone');
+            $table->string('address');
 
+            $table->unsignedBigInteger('delivery_user_id')->nullable();
+            $table->foreign('delivery_user_id')->references('id')->on('users');
+
+
+            $table->unsignedTinyInteger('status');
+            $table->date('placement_date');
+            $table->date('pick_up_date')->nullable();
+            $table->date('delivery_date')->nullable();
+
+            $table->text('notes')->nullable();
             $table->timestamps();
         });
     }

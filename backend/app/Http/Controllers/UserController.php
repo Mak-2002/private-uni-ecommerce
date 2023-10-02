@@ -3,19 +3,36 @@
 namespace App\Http\Controllers;
 
 use App\Models\CartItem;
+use App\Models\DeliveryOrder;
 use App\Models\Favorite;
 use App\Models\Product;
 use App\Models\RatingRecord;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PhpParser\Node\Expr\Cast\String_;
 
 class UserController extends Controller
 {
     public function buy(Request $request)
     {
         $currentUser = Auth::user();
-        //TODO: continue purchase process
-        $currentUser->cart()->delete();
+
+        // Create the delivery order
+        $deliveryOrder = DeliveryOrder::create([
+            'user_id' => $currentUser->id,
+            'user_name' => $currentUser->name,
+            'phone' => $request->phone,
+            'address' => strtoupper($request->unit_number),
+            'placement_date' => now(),
+            'status' => DeliveryOrder::STATUS['placed'],
+        ]);
+
+        // Add items in cart to the order and remove them from cart
+        $currentUser->cart()->update([
+            'delivery_order_id' => $deliveryOrder->id,
+            'user_id' => null
+        ]);
+
         return response()->json([
             'message' => 'تم شراء المنتجات بنجاح, بانتظار التوصيل',
         ]);
