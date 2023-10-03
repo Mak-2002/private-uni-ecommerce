@@ -20,7 +20,7 @@ class AuthController extends Controller
             ]);
     }
 
-    public function login(Request $request, $role)
+    public function login(Request $request, $role = User::ROLE_CUSTOMER)
     {
         $request->validate([
             'email' => 'required|string|email|max:255',

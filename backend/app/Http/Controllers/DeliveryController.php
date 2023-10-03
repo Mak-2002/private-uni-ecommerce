@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DeliveryOrder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DeliveryController extends Controller
 {
@@ -15,6 +16,7 @@ class DeliveryController extends Controller
         $deliveryOrder->update([
             'pick_up_date' => now(),
             'status' => DeliveryOrder::STATUS['picked_up'],
+            'delivery_user_id' => Auth::user()->id,
         ]);
         return response()->json([
             'message' => 'تم اختيار الطلب للقيام بتوصيله',
@@ -27,6 +29,7 @@ class DeliveryController extends Controller
         $deliveryOrder->update([
             'pick_up_date' => null,
             'status' => DeliveryOrder::STATUS['placed'],
+            'delivery_user_id' => null,
         ]);
         return response()->json([
             'message' => 'تم إلغاء اختيار الطلب',
@@ -41,7 +44,17 @@ class DeliveryController extends Controller
             'status' => DeliveryOrder::STATUS['delivered'],
         ]);
         return response()->json([
-            'message' => 'تم تأكيد توصيل الطلب بنجاح',
+            'message' => 'تم تأكيد توصيل الطلب',
         ]);
+    }
+
+    public function index(Request $request)
+    {
+        return response()->json(DeliveryOrder::get());
+    }
+
+    public function show(Request $request, DeliveryOrder $order)
+    {
+        return response()->json($order);
     }
 }
