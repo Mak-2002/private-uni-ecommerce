@@ -23,10 +23,17 @@ class ProductController extends Controller
 
     public function suggestBasedOnOccasion(Request $request)
     {
-        //TODO: Continue product suggestion based on occasion
+        //TEST: Test product suggestion based on occasion
         $occasion = Occasion::findOrFail($request->occasion_id);
         $people_attending = $request->people_attending;
-        return response()->json([]);
+        $suggestedProducts = $occasion->suggestedProducts;
+        foreach ($suggestedProducts as $product) {
+            $product->suggested_quantity = min([
+                $product->quantity,
+                ceil($people_attending / $product->people_served),
+            ]);
+        }
+        return response()->json($suggestedProducts);
     }
 
 

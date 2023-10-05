@@ -23,7 +23,7 @@ class OccasionsTablesSeeder extends Seeder
                 'name' => $occasionName,
             ]);
 
-        // Add product suggestions to the occasions
+        // Add product suggestions to occasions
         for ($i = 1; $i < 4; $i++) {
             OccasionProduct::create([
                 'occasion_id' => 1,

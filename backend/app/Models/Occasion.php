@@ -12,11 +12,11 @@ class Occasion extends Model
     protected $fillable = [
         'name'
     ];
-    
+
     public function suggestedProducts()
     {
         return $this->hasManyThrough(
-            Occasion::class,
+            Product::class,
             OccasionProduct::class,
             'occasion_id',
             'id',

@@ -46,7 +46,7 @@ Route::middleware('auth:sanctum')->group(function () {
 // Delivery
 
 //Auth
-Route::post('/delivery/Register', [AuthController::class, 'deliveryRegister']);
+Route::post('/delivery/register', [AuthController::class, 'deliveryRegister']);
 Route::post('/delivery/login', [AuthController::class, 'deliveryLogin']);
 Route::middleware('auth:sanctum')->post('/delivery/logout',  [AuthController::class, 'logout']);
 
@@ -61,3 +61,4 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/delivery/deliver', [DeliveryController::class, 'deliverOrder']);
     Route::post('/delivery/cancel', [DeliveryController::class, 'cancelPickUp']);
 });
+

@@ -27,6 +27,7 @@ class ProductsTableSeeder extends Seeder
                 'about' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic distinctio dolorem nam consequuntur iure adipisci saepe molestiae sint dicta dolor assumenda quas perspiciatis ab facilis, inventore voluptatem unde voluptas quos!',
                 'category' => Category::where('name', 'المنظفات')->first()->name,
                 'quantity' => 50,
+                'people_served' => 2,
             ],
             [
                 'name' => 'سامسونج غالاكسي تاب S7 FE',
@@ -35,6 +36,7 @@ class ProductsTableSeeder extends Seeder
                 'about' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic distinctio dolorem nam consequuntur iure adipisci saepe molestiae sint dicta dolor assumenda quas perspiciatis ab facilis, inventore voluptatem unde voluptas quos!',
                 'category' => Category::where('name', 'المحمصة')->first()->name,
                 'quantity' => 50,
+                'people_served' => 1,
             ],
             [
                 'name' => 'سامسونج غالاكسي تاب S8+',
@@ -43,6 +45,7 @@ class ProductsTableSeeder extends Seeder
                 'about' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic distinctio dolorem nam consequuntur iure adipisci saepe molestiae sint dicta dolor assumenda quas perspiciatis ab facilis, inventore voluptatem unde voluptas quos!',
                 'category' => Category::where('name', 'المحمصة')->first()->name,
                 'quantity' => 50,
+                'people_served' => 3,
             ],
             [
                 'name' => 'ساعة سامسونج غالاكسي 4',
@@ -51,6 +54,7 @@ class ProductsTableSeeder extends Seeder
                 'about' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic distinctio dolorem nam consequuntur iure adipisci saepe molestiae sint dicta dolor assumenda quas perspiciatis ab facilis, inventore voluptatem unde voluptas quos!',
                 'category' => Category::where('name', 'أدوات المنزل')->first()->name,
                 'quantity' => 50,
+                'people_served' => 1,
             ],
             [
                 'name' => 'ساعة آبل 7',
@@ -59,6 +63,7 @@ class ProductsTableSeeder extends Seeder
                 'about' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic distinctio dolorem nam consequuntur iure adipisci saepe molestiae sint dicta dolor assumenda quas perspiciatis ab facilis, inventore voluptatem unde voluptas quos!',
                 'category' => Category::where('name', 'أدوات المنزل')->first()->name,
                 'quantity' => 50,
+                'people_served' => 1,
             ],
             [
                 'name' => 'Beats studio 3',
@@ -67,6 +72,7 @@ class ProductsTableSeeder extends Seeder
                 'about' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic distinctio dolorem nam consequuntur iure adipisci saepe molestiae sint dicta dolor assumenda quas perspiciatis ab facilis, inventore voluptatem unde voluptas quos!',
                 'category' => Category::where('name', 'البهارات')->first()->name,
                 'quantity' => 50,
+                'people_served' => 1,
             ],
             [
                 'name' => 'سامسونج Q60 A',
@@ -75,6 +81,7 @@ class ProductsTableSeeder extends Seeder
                 'about' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic distinctio dolorem nam consequuntur iure adipisci saepe molestiae sint dicta dolor assumenda quas perspiciatis ab facilis, inventore voluptatem unde voluptas quos!',
                 'category' => Category::where('name', 'الشوكولا')->first()->name,
                 'quantity' => 50,
+                'people_served' => 1,
             ],
             [
                 'name' => 'سوني x 80 J',
@@ -83,6 +90,7 @@ class ProductsTableSeeder extends Seeder
                 'about' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic distinctio dolorem nam consequuntur iure adipisci saepe molestiae sint dicta dolor assumenda quas perspiciatis ab facilis, inventore voluptatem unde voluptas quos!',
                 'category' => Category::where('name', 'الشوكولا')->first()->name,
                 'quantity' => 50,
+                'people_served' => 1,
             ],
         ];
         Product::insert($products);

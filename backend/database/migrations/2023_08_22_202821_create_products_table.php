@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedInteger('price');
             $table->unsignedInteger('off')->nullable();
             $table->integer('quantity')->default(1);
-            $table->integer('served_people')->nullable();
+            $table->integer('people_served')->default(1);
 
             $table->integer('rating_sum')->default(0);
             $table->integer('rating_count')->default(0);

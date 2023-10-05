@@ -12,9 +12,12 @@ use Ramsey\Uuid\Type\Integer;
 
 class AuthController extends Controller
 {
-    protected function attemptLoginOrFail(Request $request)
+    protected function attemptLoginOrFail(Request $request, $role)
     {
-        if (!Auth::attempt($request->only('email', 'password')))
+        if (
+            !Auth::attempt($request->only('email', 'password')) ||
+            Auth::user()->role != $role
+        )
             throw ValidationException::withMessages([
                 'email' => ['البريد الإلكتروني أو كلمة المرور غير صحيحة'],
             ]);
@@ -27,7 +30,7 @@ class AuthController extends Controller
             'password' => 'required|min:8|max:255',
         ]);
 
-        $this->attemptLoginOrFail($request);
+        $this->attemptLoginOrFail($request, $role);
         return response()->json([
             'auth_token' => Auth::user()->createToken('auth_token')->plainTextToken,
         ]);
@@ -49,7 +52,7 @@ class AuthController extends Controller
             'role' => $role,
         ]);
 
-        $this->attemptLoginOrFail($request);
+        $this->attemptLoginOrFail($request, $role);
         return response()->json([
             'auth_token' => Auth::user()->createToken('auth_token')->plainTextToken,
         ], 201);
@@ -70,11 +73,11 @@ class AuthController extends Controller
 
     public function deliveryRegister(Request $request)
     {
-        $this->register($request, User::ROLE_DELIVERY_PERSON);
+        return $this->register($request, User::ROLE_DELIVERY_PERSON);
     }
 
     public function deliveryLogin(Request $request)
     {
-        $this->login($request, User::ROLE_DELIVERY_PERSON);
+        return $this->login($request, User::ROLE_DELIVERY_PERSON);
     }
 }

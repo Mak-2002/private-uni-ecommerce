@@ -12,7 +12,7 @@ class Product extends Model
 {
     use HasFactory;
 
-    // TODO: Test seasonal offers
+    // TEST: seasonal offers
     protected static function boot()
     {
         parent::boot();
