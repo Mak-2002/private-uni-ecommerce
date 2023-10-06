@@ -109,16 +109,8 @@ class UserController extends Controller
 
     public function getCart()
     {
-        $totalPrice = 0;
         $cart = Auth::user()->cart;
-        foreach ($cart as $cartItem) {
-            $cartItem->price = $cartItem->product->price * $cartItem->quantity;
-            if (isset($cartItem->product->off)) {
-                $cartItem->off = $cartItem->product->off * $cartItem->quantity;
-                $totalPrice += $cartItem->off;
-            } else
-                $totalPrice += $cartItem->price;
-        }
+        $totalPrice = $cart->sum('price');
 
         return response()->json([
             'total_price_of_items' =>  $totalPrice,

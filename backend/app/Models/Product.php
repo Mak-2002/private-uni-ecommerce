@@ -129,15 +129,13 @@ class Product extends Model
     }
 
     //FIXME
-    // public function subProducts()
-    // {
-    //     return $this->hasManyThrough(
-    //         Product::class,
-    //         OfferProduct::class,
-    //         'offer_id',
-    //         'id',
-    //         'id',
-    //         'sub_product_id',
-    //     );
-    // }
+    public function subProducts()
+    {
+        return $this->belongsToMany(
+            Product::class,
+            'offer_products',
+            'offer_id',
+            'sub_product_id',
+        );
+    }
 }
