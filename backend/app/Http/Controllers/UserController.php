@@ -149,7 +149,7 @@ class UserController extends Controller
             $responseContent['message'] = 'تمت إضافة المنتج إلى السلة';
             $responseContent['quantity_in_cart'] = $change;
         } else {
-            $cartItem->update(['quantity' => $cartItem->quantity + $change]);
+            $cartItem->update(['quantity' =>    $cartItem->quantity + $change]);
             $responseContent['message'] = 'تم تعديل كمية المنتج في السلة';
             $responseContent['quantity_in_cart'] = $cartItem->quantity;
             if ($cartItem->quantity == 0) {

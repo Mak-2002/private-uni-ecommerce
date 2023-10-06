@@ -44,6 +44,7 @@ class DeliveryController extends Controller
             'status' => DeliveryOrder::STATUS['delivered'],
         ]);
         //OPTION: Could delete order after delivering it
+        $deliveryOrder->delete();
         return response()->json([
             'message' => 'تم تأكيد توصيل الطلب',
         ]);
