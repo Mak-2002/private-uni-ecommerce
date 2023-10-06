@@ -7,8 +7,10 @@ use App\Models\DeliveryOrder;
 use App\Models\Favorite;
 use App\Models\Product;
 use App\Models\RatingRecord;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 use PhpParser\Node\Expr\Cast\String_;
 
 class UserController extends Controller
@@ -18,6 +20,10 @@ class UserController extends Controller
         $currentUser = Auth::user();
         $cartData = json_decode($this->getCart()->content());
 
+        if (!$currentUser->cart()->exists())
+            throw ValidationException::withMessages([
+                'السلة فارغة',
+            ]);
 
         // Create the delivery order
         $deliveryOrder = DeliveryOrder::create([
@@ -27,7 +33,7 @@ class UserController extends Controller
             'address' => strtoupper($request->unit_number),
             'placement_date' => now(),
             'status' => DeliveryOrder::STATUS['placed'],
-            'delivery_cost'=>$cartData->delivery_cost,
+            'delivery_cost' => $cartData->delivery_cost,
             'total_cost' => $cartData->total,
         ]);
 
