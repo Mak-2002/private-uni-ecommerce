@@ -56,6 +56,14 @@ class DeliveryController extends Controller
 
     public function show(Request $request, DeliveryOrder $order)
     {
-        return response()->json($order);
+        $order->load('Items');
+        return response()->json(
+            $order->only([
+                'total_cost',
+                'delivery_cost',
+                'notes',
+                'items',
+            ])
+        );
     }
 }

@@ -21,6 +21,8 @@ return new class extends Migration
             $table->unsignedBigInteger('delivery_user_id')->nullable();
             $table->foreign('delivery_user_id')->references('id')->on('users');
 
+            $table->unsignedInteger('total_cost');
+            $table->unsignedInteger('delivery_cost');
 
             $table->unsignedTinyInteger('status');
             $table->date('placement_date');

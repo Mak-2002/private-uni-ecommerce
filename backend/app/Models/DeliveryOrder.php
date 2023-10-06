@@ -21,6 +21,8 @@ class DeliveryOrder extends Model
         'phone',
         'address',
         'delivery_user_id',
+        'total_cost',
+        'delivery_cost',
         'placement_date',
         'pick_up_date',
         'delivery_date',

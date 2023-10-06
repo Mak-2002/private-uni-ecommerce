@@ -16,6 +16,8 @@ class UserController extends Controller
     public function buy(Request $request)
     {
         $currentUser = Auth::user();
+        $cartData = json_decode($this->getCart()->content());
+
 
         // Create the delivery order
         $deliveryOrder = DeliveryOrder::create([
@@ -25,6 +27,8 @@ class UserController extends Controller
             'address' => strtoupper($request->unit_number),
             'placement_date' => now(),
             'status' => DeliveryOrder::STATUS['placed'],
+            'delivery_cost'=>$cartData->delivery_cost,
+            'total_cost' => $cartData->total,
         ]);
 
         // Add items in cart to the order and remove them from cart

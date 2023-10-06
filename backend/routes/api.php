@@ -50,15 +50,13 @@ Route::post('/delivery/register', [AuthController::class, 'deliveryRegister']);
 Route::post('/delivery/login', [AuthController::class, 'deliveryLogin']);
 Route::middleware('auth:sanctum')->post('/delivery/logout',  [AuthController::class, 'logout']);
 
-// Resource
-Route::get('/delivery/orders', [DeliveryController::class, 'index']);
-Route::get('/delivery/orders/{order}', [DeliveryController::class, 'show']);
-
-
-// Actions
 Route::middleware('auth:sanctum')->group(function () {
+    // Resource
+    Route::get('/delivery/orders', [DeliveryController::class, 'index']);
+    Route::get('/delivery/orders/{order}', [DeliveryController::class, 'show']);
+
+    // Actions
     Route::post('/delivery/pickup', [DeliveryController::class, 'pickUpOrder']);
     Route::post('/delivery/deliver', [DeliveryController::class, 'deliverOrder']);
     Route::post('/delivery/cancel', [DeliveryController::class, 'cancelPickUp']);
 });
-
