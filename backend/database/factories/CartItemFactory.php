@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\DeliveryOrder;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,10 @@ class CartItemFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => null,
+            'product_id' => fake()->numberBetween(1, 7),
+            'quantity' => fake()->numberBetween(1, 10),
+            'delivery_order_id' => DeliveryOrder::factory(),
         ];
     }
 }
