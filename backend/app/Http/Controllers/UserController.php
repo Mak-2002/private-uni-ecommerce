@@ -35,6 +35,7 @@ class UserController extends Controller
             'status' => DeliveryOrder::STATUS['placed'],
             'delivery_cost' => $cartData->delivery_cost,
             'total_cost' => $cartData->total,
+            'notes'=> $request->notes,
         ]);
 
         // Add items in cart to the order and remove them from cart

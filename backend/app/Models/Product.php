@@ -32,15 +32,14 @@ class Product extends Model
     {
         $data = parent::toArray();
 
-        // FIXME
-        // $this->loadMissing('subProducts');
-        // if ($this->subProducts->count() > 0)
-        //     $data['sub_products'] = $this->subProducts->toArray();
+        $this->load('subProducts');
+        if ($this->subProducts->count() > 0)
+            $data['sub_products'] = $this->subProducts->toArray();
 
-        // else {
-        //     unset($data['sub_products']);
-        //     $this->unsetRelation('subProducts');
-        // }
+        else {
+            unset($data['sub_products']);
+            $this->unsetRelation('subProducts');
+        }
         return $data;
     }
 
@@ -67,11 +66,6 @@ class Product extends Model
         'created_at',
         'updated_at',
         'images',
-    ];
-
-    protected $with = [
-        // 'subProducts',
-        //FIXME: add subProducts relation without causing an infinite loop
     ];
 
     public function getImageLinksAttribute()
@@ -109,11 +103,11 @@ class Product extends Model
         return $query->where('isAvailable', 1);
     }
 
-    // FIXME
-    // public function scopeOffers($query)
-    // {
-    //     return $query->whereHas('subProducts');
-    // }
+    // TEST
+    public function scopeOffers($query)
+    {
+        return $query->whereHas('subProducts');
+    }
 
     public function scopeFilter($query, $filters)
     {
