@@ -5,18 +5,11 @@ namespace App\Models;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use PharIo\Version\BuildMetaData;
 
 class DeliveryOrder extends Model
 {
     use HasFactory;
-
-    protected static function boot()
-    {
-        parent::boot();
-        static::addGlobalScope('available', function (Builder $builder) {
-            $builder->where('status', 1);
-        });
-    }
 
     const STATUS = [
         'placed' => 1,
@@ -38,6 +31,11 @@ class DeliveryOrder extends Model
         'notes',
         'status',
     ];
+
+    public function scopeAvailable($query)
+    {
+        return $query->where('status', 1);
+    }
 
     public function Items()
     {

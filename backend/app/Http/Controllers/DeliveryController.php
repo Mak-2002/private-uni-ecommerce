@@ -52,7 +52,7 @@ class DeliveryController extends Controller
 
     public function index(Request $request)
     {
-        return response()->json(DeliveryOrder::get());
+        return response()->json(DeliveryOrder::available()->get());
     }
 
     public function show(Request $request, DeliveryOrder $order)

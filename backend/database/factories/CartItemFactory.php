@@ -22,7 +22,7 @@ class CartItemFactory extends Factory
             'user_id' => null,
             'product_id' => fake()->numberBetween(1, 7),
             'quantity' => fake()->numberBetween(1, 10),
-            'delivery_order_id' => DeliveryOrder::factory(),
+            'delivery_order_id' => DeliveryOrder::factory()->create()->id,
         ];
     }
 }
