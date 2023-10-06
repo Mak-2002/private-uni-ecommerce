@@ -147,7 +147,7 @@ class UserController extends Controller
                 'quantity' => $change,
             ]);
             $responseContent['message'] = 'تمت إضافة المنتج إلى السلة';
-            $responseContent['quantity_in_cart'] = $change;
+            $responseContent['quantity_in_cart'] =  $change;
         } else {
             $cartItem->update(['quantity' =>    $cartItem->quantity + $change]);
             $responseContent['message'] = 'تم تعديل كمية المنتج في السلة';
@@ -159,6 +159,8 @@ class UserController extends Controller
             }
         }
         $product->update(['quantity' => $product->quantity - $change]);
+        if (isset($responseContent['quantity_in_cart']))
+            $responseContent['quantity_in_cart'] = (int) $responseContent['quantity_in_cart'];
         return response()->json($responseContent);
     }
 }
