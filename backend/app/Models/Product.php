@@ -30,16 +30,17 @@ class Product extends Model
 
     public function toArray()
     {
-        $this->loadMissing('subProducts');
         $data = parent::toArray();
 
-        if ($this->subProducts->count() > 0)
-            $data['sub_products'] = $this->subProducts->toArray();
+        // FIXME
+        // $this->loadMissing('subProducts');
+        // if ($this->subProducts->count() > 0)
+        //     $data['sub_products'] = $this->subProducts->toArray();
 
-        else {
-            unset($data['sub_products']);
-            $this->unsetRelation('subProducts');
-        }
+        // else {
+        //     unset($data['sub_products']);
+        //     $this->unsetRelation('subProducts');
+        // }
         return $data;
     }
 
@@ -108,10 +109,11 @@ class Product extends Model
         return $query->where('isAvailable', 1);
     }
 
-    public function scopeOffers($query)
-    {
-        return $query->whereHas('subProducts');
-    }
+    // FIXME
+    // public function scopeOffers($query)
+    // {
+    //     return $query->whereHas('subProducts');
+    // }
 
     public function scopeFilter($query, $filters)
     {
@@ -126,15 +128,16 @@ class Product extends Model
         return $this->hasMany(ImageLink::class);
     }
 
-    public function subProducts()
-    {
-        return $this->hasManyThrough(
-            Product::class,
-            OfferProduct::class,
-            'offer_id',
-            'id',
-            'id',
-            'sub_product_id',
-        );
-    }
+    //FIXME
+    // public function subProducts()
+    // {
+    //     return $this->hasManyThrough(
+    //         Product::class,
+    //         OfferProduct::class,
+    //         'offer_id',
+    //         'id',
+    //         'id',
+    //         'sub_product_id',
+    //     );
+    // }
 }
