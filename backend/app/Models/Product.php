@@ -32,15 +32,13 @@ class Product extends Model
     {
         $data = parent::toArray();
 
-        //BUG
-        // $this->load('subProducts');
-        // if ($this->subProducts()->exists())
-        //     $data['sub_products'] = $this->subProducts->toArray();
+        if ($this->subProducts()->exists())
+            $data['sub_products'] = $this->subProducts->toArray();
 
-        // else {
-        //     unset($data['sub_products']);
-        //     $this->unsetRelation('subProducts');
-        // }
+        else {
+            unset($data['sub_products']);
+            $this->unsetRelation('subProducts');
+        }
         return $data;
     }
 
@@ -105,10 +103,10 @@ class Product extends Model
     }
 
     // BUG
-    // public function scopeOffers($query)
-    // {
-    //     return $query->whereHas('subProducts');
-    // }
+    public function scopeOffers($query)
+    {
+        return $query->whereHas('subProducts');
+    }
 
     public function scopeFilter($query, $filters)
     {
@@ -123,14 +121,26 @@ class Product extends Model
         return $this->hasMany(ImageLink::class);
     }
 
-    //BUG
-    // public function subProducts()
-    // {
-    //     return $this->belongsToMany(
-    //         Product::class,
-    //         'offer_products',
-    //         'offer_id',
-    //         'sub_product_id',
-    //     );
-    // }
+    public function subProducts()
+    {
+        // The related model - Product model
+        return $this->hasManyThrough(
+            Product::class,
+
+            // The pivot model
+            OfferProduct::class,
+
+            // Foreign key on OfferProduct pivot, references Product(id)
+            'offer_id',
+
+            // Local key on Product model
+            'id',
+
+            // Current model key
+            'id',
+
+            // Foreign key on OfferProduct pivot, references Product(id)
+            'sub_product_id'
+        )->where('products.id', '!=', $this->id);
+    }
 }
