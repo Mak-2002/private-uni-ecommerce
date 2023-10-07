@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 class DeliveryController extends Controller
 {
 
-    //TEST: Test Delivery Methods
     public function pickUpOrder(Request $request)
     {
         $deliveryOrder = DeliveryOrder::findOrFail($request->order_id);
@@ -43,7 +42,6 @@ class DeliveryController extends Controller
             'delivery_date' => now(),
             'status' => DeliveryOrder::STATUS['delivered'],
         ]);
-        //OPTION: Could delete order after delivering it
         $deliveryOrder->delete();
         return response()->json([
             'message' => 'تم تأكيد توصيل الطلب',

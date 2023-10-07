@@ -102,7 +102,6 @@ class Product extends Model
         return $query->where('isAvailable', 1);
     }
 
-    // BUG
     public function scopeOffers($query)
     {
         return $query->whereHas('subProducts');
