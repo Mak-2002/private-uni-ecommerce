@@ -15,17 +15,17 @@ class UsersTableSeeder extends Seeder
     {
         // Customer Profile
         User::factory()->create([
-            'email' => 'ameer@gmail.com',
+            'email' => 'waed@gmail.com',
             'password' => '12345678',
-            'name' => 'ameer',
+            'name' => 'waed',
             'role' => User::ROLE_CUSTOMER,
         ]);
 
         // Delivery Person Profile
         User::factory()->create([
-            'email' => 'qusai@gmail.com',
+            'email' => 'rawan@gmail.com',
             'password' => '12345678',
-            'name' => 'qusai',
+            'name' => 'rawan',
             'role' => User::ROLE_DELIVERY_PERSON,
         ]);
 
