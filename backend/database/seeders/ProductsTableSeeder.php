@@ -619,7 +619,8 @@ class ProductsTableSeeder extends Seeder
                 'price' => 1000,
                 'off' => 900,
                 'about' => 'منتجات متنوعة لكل احتياجاتك.',
-                'category' => 'General',
+                'category' => 'الألبان والأجبان',
+                // Dairy and Cheese
                 'quantity' => 50,
                 'people_served' => 2,
             ],
@@ -628,7 +629,8 @@ class ProductsTableSeeder extends Seeder
                 'price' => 1000,
                 'off' => 900,
                 'about' => 'منتجات متنوعة لكل احتياجاتك.',
-                'category' => 'General',
+                'category' => 'العصائر والمياه',
+                // Juices and Water
                 'quantity' => 50,
                 'people_served' => 2,
             ],
@@ -637,7 +639,8 @@ class ProductsTableSeeder extends Seeder
                 'price' => 1000,
                 'off' => 900,
                 'about' => 'منتجات متنوعة لكل احتياجاتك.',
-                'category' => 'General',
+                'category' => 'الزيت والسمن',
+                // Oils and Ghee
                 'quantity' => 50,
                 'people_served' => 2,
             ],
@@ -646,7 +649,8 @@ class ProductsTableSeeder extends Seeder
                 'price' => 1000,
                 'off' => 900,
                 'about' => 'منتجات متنوعة لكل احتياجاتك.',
-                'category' => 'General',
+                'category' => 'الحبوب',
+                // Grains
                 'quantity' => 50,
                 'people_served' => 2,
             ],
@@ -655,7 +659,8 @@ class ProductsTableSeeder extends Seeder
                 'price' => 1000,
                 'off' => 900,
                 'about' => 'منتجات متنوعة لكل احتياجاتك.',
-                'category' => 'General',
+                'category' => 'المحمصة',
+                // Roastery
                 'quantity' => 50,
                 'people_served' => 2,
             ],
@@ -664,7 +669,8 @@ class ProductsTableSeeder extends Seeder
                 'price' => 1000,
                 'off' => 900,
                 'about' => 'منتجات متنوعة لكل احتياجاتك.',
-                'category' => 'General',
+                'category' => 'الحلويات',
+                // Sweets
                 'quantity' => 50,
                 'people_served' => 2,
             ],
@@ -673,7 +679,8 @@ class ProductsTableSeeder extends Seeder
                 'price' => 1000,
                 'off' => 900,
                 'about' => 'منتجات متنوعة لكل احتياجاتك.',
-                'category' => 'General',
+                'category' => 'الحلويات',
+                // Sweets
                 'quantity' => 50,
                 'people_served' => 2,
             ],
@@ -682,7 +689,8 @@ class ProductsTableSeeder extends Seeder
                 'price' => 1000,
                 'off' => 900,
                 'about' => 'منتجات متنوعة لكل احتياجاتك.',
-                'category' => 'General',
+                'category' => 'الحلويات',
+                // Sweets
                 'quantity' => 50,
                 'people_served' => 2,
             ],
@@ -691,7 +699,8 @@ class ProductsTableSeeder extends Seeder
                 'price' => 1000,
                 'off' => 900,
                 'about' => 'منتجات متنوعة لكل احتياجاتك.',
-                'category' => 'General',
+                'category' => 'القهوة والشاي',
+                // Coffee and Tea
                 'quantity' => 50,
                 'people_served' => 2,
             ],
@@ -700,7 +709,8 @@ class ProductsTableSeeder extends Seeder
                 'price' => 1000,
                 'off' => 900,
                 'about' => 'منتجات متنوعة لكل احتياجاتك.',
-                'category' => 'General',
+                'category' => 'اللحوم',
+                // Meat
                 'quantity' => 50,
                 'people_served' => 2,
             ],
@@ -709,10 +719,12 @@ class ProductsTableSeeder extends Seeder
                 'price' => 1000,
                 'off' => 900,
                 'about' => 'منتجات متنوعة لكل احتياجاتك.',
-                'category' => 'General',
+                'category' => 'المنظفات',
+                // Cleaning Supplies
                 'quantity' => 50,
                 'people_served' => 2,
             ],
+
         ];
         Product::insert($products);
 
