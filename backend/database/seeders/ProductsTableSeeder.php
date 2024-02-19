@@ -734,311 +734,311 @@ class ProductsTableSeeder extends Seeder
         $imageLinks = [
             [
                 'product_id' => 1,
-                'link' => asset('images/بن الحموي كلاسيك مع هال.png')
+                'link' => 'بن الحموي كلاسيك مع هال.png'
             ],
             [
                 'product_id' => 2,
-                'link' => asset('images/شاي كامبو كلاسيك.png')
+                'link' => 'شاي كامبو كلاسيك.png'
             ],
             [
                 'product_id' => 3,
-                'link' => asset('images/بيتيفور.png')
+                'link' => 'بيتيفور.png'
             ],
             [
                 'product_id' => 4,
-                'link' => asset('images/كوكيز.png')
+                'link' => 'كوكيز.png'
             ],
             [
                 'product_id' => 5,
-                'link' => asset('images/كيك فهدة.png')
+                'link' => 'كيك فهدة.png'
             ],
             [
                 'product_id' => 6,
-                'link' => asset('images/كيكة.png')
+                'link' => 'كيكة.png'
             ],
             [
                 'product_id' => 7,
-                'link' => asset('images/برازق السلان.png')
+                'link' => 'برازق السلطان.png'
             ],
             [
                 'product_id' => 8,
-                'link' => asset('images/بسكويت أليتا.png')
+                'link' => 'بسكويت أليتا.png'
             ],
             [
                 'product_id' => 9,
-                'link' => asset('images/بسكويت بريك بارز.png')
+                'link' => 'بسكويت بريك بارز.png'
             ],
             [
                 'product_id' => 10,
-                'link' => asset('images/بسكويت رولانا.png')
+                'link' => 'بسكويت رولانا.png'
             ],
             [
                 'product_id' => 11,
-                'link' => asset('images/بسكويت ليفيل.png')
+                'link' => 'بسكويت ليفيل.png'
             ],
             [
                 'product_id' => 12,
-                'link' => asset('images/تونا توليدو.png')
+                'link' => 'تونا توليدو.png'
             ],
             [
                 'product_id' => 13,
-                'link' => asset('images/حمص مسلوق الشيف نديم.png')
+                'link' => 'حمص مسلوق الشيف نديم.png'
             ],
             [
                 'product_id' => 14,
-                'link' => asset('images/جبنة سبرينغ بالقشطة.png')
+                'link' => 'جبنة سبرينغ بالقشطة.png'
             ],
             [
                 'product_id' => 15,
-                'link' => asset('images/جبنة نيو بارك.png')
+                'link' => 'جبنة نيو بارك.png'
             ],
             [
                 'product_id' => 16,
-                'link' => asset('images/جنبة أصابع.png')
+                'link' => 'جنبة أصابع.png'
             ],
             [
                 'product_id' => 17,
-                'link' => asset('images/حليب هوا الشام 1 ليتر.png')
+                'link' => 'حليب هوا الشام 1 ليتر.png'
             ],
             [
                 'product_id' => 18,
-                'link' => asset('images/لانشون الدرة دجاج.png')
+                'link' => 'لانشون الدرة دجاج.png'
             ],
             [
                 'product_id' => 19,
-                'link' => asset('images/جوز غير مقشر.png')
+                'link' => 'جوز غير مقشر.png'
             ],
             [
                 'product_id' => 20,
-                'link' => asset('images/فستق عزبدة.png')
+                'link' => 'فستق عزبدة.png'
             ],
             [
                 'product_id' => 21,
-                'link' => asset('images/خاطة اسكالوب الدجاج من الدرة.png')
+                'link' => 'خاطة اسكالوب الدجاج من الدرة.png'
             ],
             [
                 'product_id' => 22,
-                'link' => asset('images/صدر دجاج.png')
+                'link' => 'صدر دجاج.png'
             ],
             [
                 'product_id' => 23,
-                'link' => asset('images/شاورما دجاج.png')
+                'link' => 'شاورما دجاج.png'
             ],
             [
                 'product_id' => 24,
-                'link' => asset('images/لحم بقر.png')
+                'link' => 'لحم بقر.png'
             ],
             [
                 'product_id' => 25,
-                'link' => asset('images/خبز سياحي شمسين.png')
+                'link' => 'خبز سياحي شمسين.png'
             ],
             [
                 'product_id' => 26,
-                'link' => asset('images/خبز شعير تنور زمان.png')
+                'link' => 'خبز شعير تنور زمان.png'
             ],
             [
                 'product_id' => 27,
-                'link' => asset('images/خبز شوفان تنور زمان.png')
+                'link' => 'خبز شوفان تنور زمان.png'
             ],
             [
                 'product_id' => 28,
-                'link' => asset('images/خبز نخالة تنور زمان.png')
+                'link' => 'خبز نخالة تنور زمان.png'
             ],
             [
                 'product_id' => 29,
-                'link' => asset('images/خرمى.png')
+                'link' => 'خرمى.png'
             ],
             [
                 'product_id' => 30,
-                'link' => asset('images/خس.png')
+                'link' => 'خس.png'
             ],
             [
                 'product_id' => 31,
-                'link' => asset('images/خيار.png')
+                'link' => 'خيار.png'
             ],
             [
                 'product_id' => 32,
-                'link' => asset('images/رمان.png')
+                'link' => 'رمان.png'
             ],
             [
                 'product_id' => 33,
-                'link' => asset('images/طماطم كرزية.png')
+                'link' => 'طماطم كرزية.png'
             ],
             [
                 'product_id' => 34,
-                'link' => asset('images/قرنبيط.png')
+                'link' => 'قرنبيط.png'
             ],
             [
                 'product_id' => 35,
-                'link' => asset('images/ملفوف أحمر.png')
+                'link' => 'ملفوف أحمر.png'
             ],
             [
                 'product_id' => 36,
-                'link' => asset('images/خلطة الدجاج المشوي من الدرة.png')
+                'link' => 'خلطة الدجاج المشوي من الدرة.png'
             ],
             [
                 'product_id' => 37,
-                'link' => asset('images/خميرة من سولو.png')
+                'link' => 'خميرة من سولو.png'
             ],
             [
                 'product_id' => 38,
-                'link' => asset('images/عصفر من سولو.png')
+                'link' => 'عصفر من سولو.png'
             ],
             [
                 'product_id' => 39,
-                'link' => asset('images/فلفل أسود حب من سولو.png')
+                'link' => 'فلفل أسود حب من سولو.png'
             ],
             [
                 'product_id' => 40,
-                'link' => asset('images/زيت دوار الشمس الزهرة.png')
+                'link' => 'زيت دوار الشمس الزهرة.png'
             ],
             [
                 'product_id' => 41,
-                'link' => asset('images/زيت زيتون الولائم 2 ليتر.png')
+                'link' => 'زيت زيتون الولائم 2 ليتر.png'
             ],
             [
                 'product_id' => 42,
-                'link' => asset('images/سمن البوادي البقري.png')
+                'link' => 'سمن البوادي البقري.png'
             ],
             [
                 'product_id' => 43,
-                'link' => asset('images/سمن عسال الورد البقري.png')
+                'link' => 'سمن عسال الورد البقري.png'
             ],
             [
                 'product_id' => 44,
-                'link' => asset('images/سائل جلي برافو.png')
+                'link' => 'سائل جلي برافو.png'
             ],
             [
                 'product_id' => 45,
-                'link' => asset('images/سائل جلي فلو.png')
+                'link' => 'سائل جلي فلو.png'
             ],
             [
                 'product_id' => 46,
-                'link' => asset('images/معقم تول.png')
+                'link' => 'معقم تول.png'
             ],
             [
                 'product_id' => 47,
-                'link' => asset('images/ملمع بلاط بوفالو.png')
+                'link' => 'ملمع بلاط بوفالو.png'
             ],
             [
                 'product_id' => 48,
-                'link' => asset('images/ملمع زجاج ليتس كلين.png')
+                'link' => 'ملمع زجاج ليتس كلين.png'
             ],
             [
                 'product_id' => 49,
-                'link' => asset('images/سكاكين.png')
+                'link' => 'سكاكين.png'
             ],
             [
                 'product_id' => 50,
-                'link' => asset('images/قطاعة بيتزا.png')
+                'link' => 'قطاعة بيتزا.png'
             ],
             [
                 'product_id' => 51,
-                'link' => asset('images/شعالة فحم إلكترونية.png')
+                'link' => 'شعالة فحم إلكترونية.png'
             ],
             [
                 'product_id' => 52,
-                'link' => asset('images/ضوء فلاش.png')
+                'link' => 'ضوء فلاش.png'
             ],
             [
                 'product_id' => 53,
-                'link' => asset('images/ميزان خضروات.png')
+                'link' => 'ميزان خضروات.png'
             ],
             [
                 'product_id' => 54,
-                'link' => asset('images/عصير برتقال فروتي.png')
+                'link' => 'عصير برتقال فروتي.png'
             ],
             [
                 'product_id' => 55,
-                'link' => asset('images/عصير مانغو فروتي 1 ليتر.png')
+                'link' => 'عصير مانغو فروتي 1 ليتر.png'
             ],
             [
                 'product_id' => 56,
-                'link' => asset('images/مياه فيجة صغيرة.png')
+                'link' => 'مياه فيجة صغيرة.png'
             ],
             [
                 'product_id' => 57,
-                'link' => asset('images/مشروب غازي سامبيرو أناناس.png')
+                'link' => 'مشروب غازي سامبيرو أناناس.png'
             ],
             [
                 'product_id' => 58,
-                'link' => asset('images/مشروب غازي سينالكو.png')
+                'link' => 'مشروب غازي سينالكو.png'
             ],
             [
                 'product_id' => 59,
-                'link' => asset('images/رول محارم المطبخ القطة.png')
+                'link' => 'رول محارم المطبخ القطة.png'
             ],
             [
                 'product_id' => 60,
-                'link' => asset('images/محارم كومفورت.png')
+                'link' => 'محارم كومفورت.png'
             ],
             [
                 'product_id' => 61,
-                'link' => asset('images/محارم ليلي.png')
+                'link' => 'محارم ليلي.png'
             ],
             [
                 'product_id' => 62,
-                'link' => asset('images/ورق تنشيف ليلي.png')
+                'link' => 'ورق تنشيف ليلي.png'
             ],
             [
                 'product_id' => 63,
-                'link' => asset('images/ذرة حب سيدي هشام.png')
+                'link' => 'ذرة حب سيدي هشام.png'
             ],
             [
                 'product_id' => 64,
-                'link' => asset('images/عدس مشروش سيدي هشام.png')
+                'link' => 'عدس مشروش سيدي هشام.png'
             ],
             [
                 'product_id' => 65,
-                'link' => asset('images/شاحن بطاية سريع.png')
+                'link' => 'شاحن بطاية سريع.png'
             ],
             [
                 'product_id' => 66,
-                'link' => asset('images/مصففة شعر برو فايتال.png')
+                'link' => 'مصففة شعر برو فايتال.png'
             ],
             [
                 'product_id' => 67,
-                'link' => asset('images/سيتي كريمير.png')
+                'link' => 'سيتي كريمير.png'
             ],
             [
                 'product_id' => 68,
-                'link' => asset('images/صودا ماندرين.png')
+                'link' => 'صودا ماندرين.png'
             ],
             [
                 'product_id' => 69,
-                'link' => asset('images/علبة زيت.png')
+                'link' => 'علبة زيت.png'
             ],
             [
                 'product_id' => 70,
-                'link' => asset('images/فاصوليا حب الشيف نديم.png')
+                'link' => 'فاصوليا حب الشيف نديم.png'
             ],
             [
                 'product_id' => 71,
-                'link' => asset('images/لوز مدخن.png')
+                'link' => 'لوز مدخن.png'
             ],
             [
                 'product_id' => 72,
-                'link' => asset('images/ماغ سمايلي فيس.png')
+                'link' => 'ماغ سمايلي فيس.png'
             ],
             [
                 'product_id' => 73,
-                'link' => asset('images/ماغ.png')
+                'link' => 'ماغ.png'
             ],
             [
                 'product_id' => 74,
-                'link' => asset('images/ماكسي كيك.png')
+                'link' => 'ماكسي كيك.png'
             ],
             [
                 'product_id' => 75,
-                'link' => asset('images/متة تاراغواي.png')
+                'link' => 'متة تاراغواي.png'
             ],
             [
                 'product_id' => 76,
-                'link' => asset('images/موزات مشفاية.png')
+                'link' => 'موزات مشفاية.png'
             ],
             [
                 'product_id' => 77,
-                'link' => asset('images/3 ب 1 ألترا فريش.png')
+                'link' => '3 ب 1 ألترا فريش.png'
             ],
         ];
         ImageLink::insert($imageLinks);
