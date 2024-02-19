@@ -7,17 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class ImageLink extends Model
 {
-    public function toArray()
+    public function getLinkAttribute()
     {
-        $data = parent::toArray();
-        $data['link'] = asset('images/' . $data['link']);
-        // dd($data);
-        
-        return $data;
-    }
-
-    public function getLinkAttribute() {
-        return asset('images/' . $this->attributes['link']);
+        return env('APP_URL') .  "/images/" . $this->attributes['link'];
     }
 
     use HasFactory;
